@@ -35,7 +35,10 @@ set(BOLT_RT_FLAGS
   -fno-exceptions
   -fno-rtti
   -fno-stack-protector
-  -fPIC)
+  -fPIC
+  -mgeneral-regs-only
+  -fomit-frame-pointer # Runtime currently assumes omitted frame pointers. llvm/llvm-project#147569
+)
 if (CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
   set(BOLT_RT_FLAGS ${BOLT_RT_FLAGS} 
     -mno-sse 
